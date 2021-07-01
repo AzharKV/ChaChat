@@ -1,16 +1,20 @@
-# chat_with_firebase
+# ChaChat
 
-A new Flutter application.
+-> Simple Single Group Chat App With FireBase As Backend  
+-> FireBase Email Authentication
+-> Firestore
 
-## Getting Started
+SplashScreen  
+<img src="https://github.com/AzharKV/ChaChat/blob/master/screenshots/splash.jpg?raw=true" width="50%">
 
-This project is a starting point for a Flutter application.
+Verifying  
+<img src="https://github.com/AzharKV/ChaChat/blob/master/screenshots/loading.jpg?raw=true" width="50%">
 
-A few resources to get you started if this is your first Flutter project:
+WelcomeScreen  
+<img src="https://github.com/AzharKV/ChaChat/blob/master/screenshots/welcome.jpg?raw=true" width="50%">
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+FormField  
+<img src="https://github.com/AzharKV/ChaChat/blob/master/screenshots/form.jpg?raw=true" width="50%">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+CatScreen  
+<img src="https://github.com/AzharKV/ChaChat/blob/master/screenshots/chat.jpg?raw=true" width="50%">
