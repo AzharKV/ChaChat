@@ -1,5 +1,6 @@
 import 'package:chat_with_firebase/Components/Constant.dart';
 import 'package:chat_with_firebase/Components/RoundedButton.dart';
+import 'package:chat_with_firebase/Components/heroLogo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -38,17 +39,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Hero(
-                tag: "logo",
-                child: Image.asset("images/logo.png", height: 200.0),
-              ),
+              HeroLogo(),
               SizedBox(height: 48.0),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
-                onChanged: (value) {
-                  email = value;
-                },
+                onChanged: (value) => email = value,
                 decoration:
                     kTextDecoration.copyWith(hintText: "Enter Your Email"),
                 style: TextStyle(color: Colors.black),
@@ -58,9 +54,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 keyboardType: TextInputType.visiblePassword,
                 obscureText: true,
                 textAlign: TextAlign.center,
-                onChanged: (value) {
-                  password = value;
-                },
+                onChanged: (value) => password = value,
                 decoration:
                     kTextDecoration.copyWith(hintText: "Enter Your Password"),
                 style: TextStyle(color: Colors.black),
@@ -72,9 +66,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 borderRadius: 30.0,
                 title: "Register",
                 onPressed: () async {
-                  setState(() {
-                    showSpinner = true;
-                  });
+                  setState(() => showSpinner = true);
                   try {
                     UserCredential newUser =
                         await _auth.createUserWithEmailAndPassword(

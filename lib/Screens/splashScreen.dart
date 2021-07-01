@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chat_with_firebase/Components/animatedText.dart';
+import 'package:chat_with_firebase/Components/heroLogo.dart';
 import 'package:chat_with_firebase/Screens/ChatScreen.dart';
+import 'package:chat_with_firebase/Screens/WelcomeScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'LoginScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -19,8 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () {
-      if (user == null) Navigator.pushNamed(context, LoginScreen.id);
+    Timer(Duration(milliseconds: 1500), () {
+      if (user == null) Navigator.pushNamed(context, WelcomeScreen.id);
 
       if (user != null) Navigator.pushNamed(context, ChatScreen.id);
     });
@@ -34,20 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Hero(
-                tag: "logo",
-                child: Image.asset("images/logo.png", height: 70.0)),
-            TypewriterAnimatedTextKit(
-              onTap: () {},
-              text: ["Flash Chat"],
-              textStyle: TextStyle(
-                  fontSize: 30.0,
-                  fontFamily: "Agne",
-                  color: Colors.black87,
-                  fontWeight: FontWeight.bold),
-              textAlign: TextAlign.start,
-              speed: Duration(milliseconds: 100),
-            ),
+            HeroLogo(),
+            TypeWriterAnimatedText(),
           ],
         ),
       ),
