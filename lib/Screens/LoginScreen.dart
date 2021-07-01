@@ -66,9 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 elevation: 5.0,
                 borderRadius: 30.0,
                 onPressed: () async {
-                  setState(() {
-                    showSpinner = true;
-                  });
+                  setState(() => showSpinner = true);
                   try {
                     final user = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
@@ -76,7 +74,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.pushNamed(context, ChatScreen.id);
                     }
                   } catch (e) {
+                    setState(() => showSpinner = false);
                     print(e.toString());
+
+                    final snackBar = SnackBar(content: Text('$e'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 },
                 title: "LogIn",

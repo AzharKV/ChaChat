@@ -1,3 +1,4 @@
+import 'package:chat_with_firebase/Screens/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Screens/ChatScreen.dart';
@@ -20,11 +21,12 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity),
         routes: {
+          SplashScreen.id: (context) => SplashScreen(),
           WelcomeScreen.id: (context) => WelcomeScreen(),
           ChatScreen.id: (context) => ChatScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           RegistrationScreen.id: (context) => RegistrationScreen(),
         },
-        initialRoute: WelcomeScreen.id);
+        initialRoute: SplashScreen.id);
   }
 }

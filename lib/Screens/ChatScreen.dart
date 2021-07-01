@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'WelcomeScreen.dart';
+
 final _auth = FirebaseAuth.instance;
 final _fireStore = FirebaseFirestore.instance;
 User loggedInUser;
@@ -40,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title:
             Text("⚡ FlashChat", style: TextStyle(fontStyle: FontStyle.italic)),
-        leading: SizedBox(),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
               icon: Icon(Icons.logout, color: Colors.white),
@@ -72,11 +73,17 @@ class _ChatScreenState extends State<ChatScreen> {
                   IconButton(
                     onPressed: () async {
                       messageController.clear();
-                      await _fireStore.collection("messages").add({
-                        "text": messageText,
-                        "user": loggedInUser.email,
-                        "time": FieldValue.serverTimestamp(),
-                      }).whenComplete(() => print("Completed"));
+                      await _fireStore
+                          .collection("messages")
+                          .add({
+                            "text": messageText,
+                            "user": loggedInUser.email,
+                            "time": FieldValue.serverTimestamp(),
+                          })
+                          .whenComplete(() => print("Completed"))
+                          .catchError((onError) {
+                            print(onError);
+                          });
                     },
                     icon: Icon(Icons.send),
                   ),
@@ -94,7 +101,7 @@ class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _fireStore.collection("messages").limit(10).snapshots(),
+      stream: _fireStore.collection("messages").snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");
@@ -107,7 +114,7 @@ class MessageStream extends StatelessWidget {
         for (var message in messages) {
           final String messageText = message.data()["text"];
           final String messageSender = message.data()["user"];
-          final Timestamp messageTime = message.data()["time"] as Timestamp;
+          final Timestamp messageTime = message.data()["time"];
           final currentUser = loggedInUser.email;
 
           final messageBubble = MessageBubble(
