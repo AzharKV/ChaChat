@@ -1,8 +1,7 @@
 import 'package:chat_with_firebase/Screens/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-import 'Components/Constant.dart';
+import 'Components/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

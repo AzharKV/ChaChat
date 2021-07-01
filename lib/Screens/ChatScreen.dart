@@ -73,17 +73,16 @@ class _ChatScreenState extends State<ChatScreen> {
                   IconButton(
                     onPressed: () async {
                       messageController.clear();
-                      await _fireStore
-                          .collection("messages")
-                          .add({
-                            "text": messageText,
-                            "user": loggedInUser.email,
-                            "time": FieldValue.serverTimestamp(),
-                          })
-                          .whenComplete(() => print("Completed"))
-                          .catchError((onError) {
-                            print(onError);
-                          });
+                      await _fireStore.collection("messages").add({
+                        "text": messageText,
+                        "user": loggedInUser.email,
+                        "time": FieldValue.serverTimestamp(),
+                      }).whenComplete(() {
+                        print("Completed");
+                      }).catchError((onError) {
+                        print("\n\n\n\n");
+                        print(onError);
+                      });
                     },
                     icon: Icon(Icons.send),
                   ),
